@@ -6,6 +6,7 @@ export default function NewsPage() {
     <div id="news">
       <h1>The News</h1>
       <ul className="news-list">
+
         {DUMMY_NEWS.map((newsItem) => (
           <li key={newsItem.id}>
             <Link href= {`/news/${newsItem.slug}`}>
@@ -16,6 +17,7 @@ export default function NewsPage() {
             </span>
           </li>
         ))}
+        
       </ul>
     </div>
   );
