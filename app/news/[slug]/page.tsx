@@ -1,5 +1,6 @@
 import { DUMMY_NEWS } from "@/dummy-news";  
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
 export default async function NewsDetailPage({params}: {params: Promise<{ slug: string }>}) {
   
@@ -14,7 +15,7 @@ export default async function NewsDetailPage({params}: {params: Promise<{ slug: 
     <>
       <article className="news-article">
         <header>
-          <img src = {`/images/news/${newsItem!.image}`} alt={newsItem!.title}/>
+          <Link href= {`/news/${newsSlug}/image`}><img src = {`/images/news/${newsItem!.image}`} alt={newsItem!.title}/></Link>
           <br/>
           <time dateTime={newsItem!.date}>{newsItem!.date}</time>
         </header>

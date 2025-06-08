@@ -1,6 +1,9 @@
 import NewsList from "@/components/news-list";
 import Link from "next/link";
-import { getAvailableNewsMonths, getAvailableNewsYears, getNewsForYear, getNewsForYearAndMonth } from "@/lib/news";
+import { getAvailableNewsMonths, 
+    getAvailableNewsYears, 
+    getNewsForYear, 
+    getNewsForYearAndMonth } from "@/lib/news";
 import { NewsItem } from "@/types/news";
 
 //catc-all params will be an array of strings
