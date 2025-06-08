@@ -41,11 +41,6 @@ export default function InterceptedImagePage({ params }: Props) {
     resolveParams();
   }, [params, router]);
 
-  // Handle navigation back
-  //const handleClose = () => {
-    //router.back(); // Programmatically navigate back
-  //};
-
   // Show loading state while resolving params or finding news item
   if (loading || !newsItem) {
     return <div>Loading...</div>;
