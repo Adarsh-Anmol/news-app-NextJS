@@ -34,6 +34,11 @@ export default async function FilteredNewsPage({params}: {params: Promise<{ filt
         defNewsContent = <NewsList news={news}/>
     }
 
+    if (selectedYear && !getAvailableNewsYears().includes(+selectedYear) ||
+        selectedMonth && !getAvailableNewsMonths(selectedYear).includes(+selectedMonth)){
+            throw new Error('An error Occured!')
+        }
+
     return (
         <>
         <header id ="archive-header">
