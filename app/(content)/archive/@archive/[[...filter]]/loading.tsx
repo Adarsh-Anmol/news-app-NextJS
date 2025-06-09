@@ -1,5 +1,5 @@
 export default function ArchiveLoading(){
     return (
-        <p>Archived News Loading</p>
+        <p>Archived News Loading...</p>
     )
 }

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { NewsItem } from "@/types/news";
 
-export default function NewsList({news}:{news : NewsItem[]}){
+export default async function NewsList({news}:{news : NewsItem[]}){
     return(
     <ul className="news-list">
 

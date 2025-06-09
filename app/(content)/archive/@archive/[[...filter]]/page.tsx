@@ -18,15 +18,15 @@ export default async function FilteredNewsPage({params}: {params: Promise<{ filt
     const selectedMonth = filter?.[1];
 
     let news: NewsItem[] = [];
-    let links = getAvailableNewsYears();
+    let links = await getAvailableNewsYears();
 
     if (selectedYear && !selectedMonth){
-        news = getNewsForYear(selectedYear);
+        news = await getNewsForYear(selectedYear);
         links = getAvailableNewsMonths(selectedYear);
     }
 
     if (selectedYear && selectedMonth){
-        news = getNewsForYearAndMonth(selectedYear, selectedMonth);
+        news = await getNewsForYearAndMonth(selectedYear, selectedMonth);
         links = []; //set the links to disappear when month and year both selected
     }
 
@@ -37,8 +37,10 @@ export default async function FilteredNewsPage({params}: {params: Promise<{ filt
         defNewsContent = <NewsList news={news}/>
     }
 
-    if (selectedYear && !getAvailableNewsYears().includes(+selectedYear) ||
-        selectedMonth && !getAvailableNewsMonths(selectedYear).includes(+selectedMonth)){
+    const availableYears = await getAvailableNewsYears();
+
+    if (selectedYear && !availableYears.includes(selectedYear) ||
+        selectedMonth && !getAvailableNewsMonths(selectedYear).includes(selectedMonth)){
             throw new Error('An error Occured!')
         }
 

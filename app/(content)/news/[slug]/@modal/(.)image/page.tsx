@@ -1,7 +1,34 @@
-'use client';
+import ModalBackdrop from "@/components/modal-backdrop";
+import { getNewsItem } from "@/lib/news";
+import { notFound, useRouter } from "next/navigation";
 
-import { DUMMY_NEWS } from '@/dummy-news';
-import { useRouter } from 'next/navigation';
+
+
+export default async function InterceptedImagePage({params}: {params: Promise<{ slug: string }>}){
+
+    const newsSlug = (await params).slug;
+    const newsItem =  await getNewsItem(newsSlug);
+    
+    if(!newsItem){
+        notFound();
+    }
+
+    return(
+        <>
+        <ModalBackdrop />
+        {/*Here, used router.back to programatically navigate back */}
+        <dialog className="modal" open>
+            <div className="fullscreen-image">
+                <img src= {`/images/news/${newsItem.image}`} alt = {newsItem.title}></img>
+            </div>
+        </dialog>
+        </>
+    )
+
+}
+
+
+/*import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 // Define the type for the params prop
@@ -58,33 +85,6 @@ export default function InterceptedImagePage({ params }: Props) {
   );
 }
 
-
-
-/*import { DUMMY_NEWS } from "@/dummy-news";
-import { notFound, useRouter } from "next/navigation";
-
-
-
-export default async function InterceptedImagePage({params}: {params: Promise<{ slug: string }>}){
-
-    const newsSlug = (await params).slug;
-    const newsItem =  DUMMY_NEWS.find(newsItem => newsItem.slug === newsSlug) ;
-    
-    if(!newsItem){
-        notFound();
-    }
-
-    return(
-        <>
-        <div className="modal-backdrop"/> 
-        {/*Here, used router.back to programatically navigate back }
-        <dialog className="modal" open>
-            <div className="fullscreen-image">
-                <img src= {`/images/news/${newsItem.image}`} alt = {newsItem.title}></img>
-            </div>
-        </dialog>
-        </>
-    )
-
-}
 */
+
+
